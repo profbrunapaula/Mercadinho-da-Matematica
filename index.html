@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Mercadinho da Matemática — Financinhas nas Escolas</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
@@ -16,10 +16,10 @@
   --sicoob-bg: #eaf7f2;
   --red: #d85b55;
   --line: #a7d8cc;
-  --shadow: 0 12px 30px rgba(0, 54, 65, 0.15);
+  --shadow: 0 8px 24px rgba(0, 54, 65, 0.12);
 }
 
-* { box-sizing: border-box; font-family: 'Fredoka', Arial, sans-serif; }
+* { box-sizing: border-box; font-family: 'Fredoka', Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
 
 body {
   margin: 0;
@@ -27,139 +27,121 @@ body {
   color: var(--sicoob-teal);
   background-color: var(--sicoob-bg);
   background-image: radial-gradient(var(--sicoob-mint) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
+  background-size: 20px 20px;
 }
 
 button, input { font: inherit; }
 button { cursor: pointer; border: 0; }
 
-.screen { display: none; min-height: 100vh; padding: 20px; }
+.screen { display: none; min-height: 100vh; padding: 12px; }
 .screen.active { display: flex; }
 .wrap { width: min(1000px, 100%); margin: auto; }
 
 /* --- TELA INICIAL --- */
 .home-card {
   background: #ffffff;
-  border: 4px solid var(--sicoob-mint);
-  border-radius: 36px;
+  border: 3px solid var(--sicoob-mint);
+  border-radius: 28px;
   box-shadow: var(--shadow);
-  padding: 28px 24px 20px;
+  padding: 20px 16px;
   text-align: center;
   position: relative;
-  overflow: hidden;
 }
 
-.top-sound-bar { display: flex; justify-content: flex-end; margin-bottom: 10px; }
-.sound-btn-toggle { background: var(--sicoob-teal); color: #fff; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px; }
-.title-container { margin-bottom: 20px; }
-.cart-icon-title { font-size: 42px; margin-bottom: -5px; }
-.main-title { color: var(--sicoob-teal); font-size: clamp(26px, 5vw, 44px); font-weight: 700; margin: 4px 0; text-transform: uppercase; letter-spacing: 0.5px; }
-.ribbon-banner { background: var(--sicoob-gold); color: #173b45; font-weight: 700; padding: 8px 22px; border-radius: 20px; display: inline-block; font-size: clamp(14px, 3vw, 17px); box-shadow: 0 4px 0 #d9a31a; margin-top: 5px; }
+.top-sound-bar { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+.sound-btn-toggle { background: var(--sicoob-teal); color: #fff; border: none; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 13px; }
+.title-container { margin-bottom: 16px; }
+.cart-icon-title { font-size: 38px; margin-bottom: -5px; }
+.main-title { color: var(--sicoob-teal); font-size: clamp(22px, 6vw, 40px); font-weight: 700; margin: 4px 0; text-transform: uppercase; }
+.ribbon-banner { background: var(--sicoob-gold); color: #173b45; font-weight: 700; padding: 6px 16px; border-radius: 16px; display: inline-block; font-size: clamp(12px, 3.5vw, 16px); box-shadow: 0 3px 0 #d9a31a; }
 
-.class-info-box { background: #f0faf6; border: 3px solid var(--sicoob-mint); border-radius: 24px; padding: 16px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 20px auto; max-width: 580px; }
-.info-badge { background: #ffffff; border: 2px solid var(--sicoob-lime); border-radius: 16px; padding: 10px 20px; display: flex; align-items: center; gap: 10px; }
-.badge-icon { font-size: 26px; }
-.badge-text { color: var(--sicoob-teal); font-weight: 700; font-size: 20px; }
+.class-info-box { background: #f0faf6; border: 2px solid var(--sicoob-mint); border-radius: 20px; padding: 12px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 16px auto; }
+.info-badge { background: #ffffff; border: 2px solid var(--sicoob-lime); border-radius: 14px; padding: 8px 14px; display: flex; align-items: center; gap: 6px; }
+.badge-icon { font-size: 20px; }
+.badge-text { color: var(--sicoob-teal); font-weight: 700; font-size: 16px; }
 
-.student-input-container { margin: 20px auto; text-align: left; max-width: 480px; }
-.student-input-container label { display: block; font-weight: 700; color: var(--sicoob-teal); margin-bottom: 6px; font-size: 16px; }
-.student-input-container input { width: 100%; padding: 14px 16px; border: 3px solid var(--sicoob-mint); border-radius: 16px; font-size: 17px; font-weight: 600; outline: none; background: #fff; }
-.student-input-container input:focus { border-color: var(--sicoob-orange); }
+.student-input-container { margin: 16px auto; text-align: left; }
+.student-input-container label { display: block; font-weight: 700; color: var(--sicoob-teal); margin-bottom: 6px; font-size: 14px; }
+.student-input-container input { width: 100%; padding: 12px 14px; border: 2.5px solid var(--sicoob-mint); border-radius: 14px; font-size: 16px; font-weight: 600; outline: none; background: #fff; }
 
-.play-btn-large { background: var(--sicoob-orange); color: #ffffff; font-size: 22px; font-weight: 700; padding: 16px 42px; border: none; border-radius: 50px; box-shadow: 0 6px 0 #cc6e00; cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; margin-top: 10px; }
-.play-btn-large:active { transform: translateY(4px); box-shadow: 0 2px 0 #cc6e00; }
-.footer-banner { margin-top: 25px; border-top: 2px dashed var(--line); padding-top: 15px; color: var(--sicoob-teal); font-size: 14px; font-weight: 600; }
+.play-btn-large { background: var(--sicoob-orange); color: #ffffff; font-size: 20px; font-weight: 700; padding: 14px 32px; border: none; border-radius: 40px; box-shadow: 0 5px 0 #cc6e00; width: 100%; max-width: 320px; }
+.footer-banner { margin-top: 20px; border-top: 2px dashed var(--line); padding-top: 12px; color: var(--sicoob-teal); font-size: 12px; font-weight: 600; }
 
-/* --- TELA DO JOGO --- */
+/* --- TELA DO JOGO (LAYOUT MOBILE REESTRUTURADO) --- */
 #game { align-items: stretch; }
-.game-wrap { width: min(1180px, 100%); margin: auto; }
-.topbar { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; margin-bottom: 14px; }
-.brand { font-weight: 700; color: var(--sicoob-teal); font-size: 20px; }
-.pill { background: white; border: 2px solid var(--line); border-radius: 15px; padding: 10px 14px; font-weight: 700; }
+.game-wrap { width: 100%; margin: auto; }
+.topbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
+.brand { font-weight: 700; color: var(--sicoob-teal); font-size: 16px; }
+.pill { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 6px 10px; font-weight: 700; font-size: 13px; }
 .money-pill { background: #fff8d8; border-color: var(--sicoob-gold); }
-.sound { background: white; border: 2px solid var(--line); border-radius: 12px; padding: 9px 12px; font-weight: 700; }
-.progress { height: 12px; background: #d4eee6; border-radius: 20px; overflow: hidden; margin-bottom: 16px; }
+.sound { background: white; border: 2px solid var(--line); border-radius: 10px; padding: 6px 10px; }
+.progress { height: 10px; background: #d4eee6; border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
 .progress > div { height: 100%; background: var(--sicoob-mint); width: 5%; transition: .35s; }
-.market { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 16px; }
-.panel { background: rgba(255,255,255,.97); border: 3px solid var(--line); border-radius: 24px; padding: 20px; box-shadow: var(--shadow); }
-.shelf { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-.product { border: 2px solid #c9e5dc; border-radius: 18px; padding: 12px; background: #fff; text-align: center; position: relative; }
+
+/* ESTRUTURA FLEXÍVEL: DESAFIOS EM CIMA, CARRINHO LOGO ABAIXO */
+.market { display: flex; flex-direction: column; gap: 12px; }
+
+.panel { background: rgba(255,255,255,.98); border: 2.5px solid var(--line); border-radius: 20px; padding: 14px; box-shadow: var(--shadow); }
+.shelf { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.product { border: 2px solid #c9e5dc; border-radius: 16px; padding: 10px 8px; background: #fff; text-align: center; }
 .product.in-cart { border-color: var(--sicoob-orange); background: #fff9ed; }
-.prod-emoji { font-size: 45px; height: 55px; }
-.price { font-weight: 700; color: var(--sicoob-teal); font-size: 18px; }
-.prod-name { font-weight: 700; margin: 4px; }
-.qty-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; }
-.qty-row button { width: 32px; height: 32px; border-radius: 9px; background: #dff4eb; color: var(--sicoob-mint); font-weight: 700; font-size: 18px; }
-.qty { min-width: 24px; font-weight: 700; }
+.prod-emoji { font-size: 36px; height: 42px; }
+.price { font-weight: 700; color: var(--sicoob-teal); font-size: 16px; }
+.prod-name { font-weight: 700; margin: 2px 0; font-size: 14px; }
+.qty-row { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 6px; }
+.qty-row button { width: 36px; height: 36px; border-radius: 10px; background: #dff4eb; color: var(--sicoob-mint); font-weight: 700; font-size: 20px; }
+.qty { min-width: 20px; font-weight: 700; font-size: 16px; }
 
-.cart { position: sticky; top: 15px; }
-.cart h2 { margin-top: 0; }
-.cart-list { min-height: 150px; max-height: 420px; overflow: auto; }
-.cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #dceee9; font-weight: 700; font-size: 16px; }
-.unit-price-badge { background: #eaf7f2; color: var(--sicoob-teal); padding: 2px 8px; border-radius: 8px; font-size: 14px; font-weight: 700; }
+/* CARRINHO COMPACTO PARA O CELULAR */
+.cart { order: 2; }
+.cart h2 { margin: 0 0 8px 0; font-size: 16px; display: flex; justify-content: space-between; align-items: center; }
+.cart-list { max-height: 180px; overflow-y: auto; }
+.cart-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #dceee9; font-weight: 700; font-size: 14px; }
+.unit-price-badge { background: #eaf7f2; color: var(--sicoob-teal); padding: 2px 6px; border-radius: 6px; font-size: 12px; font-weight: 700; margin-left: 4px; }
 
-.market-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
-.small-btn { padding: 11px 16px; border-radius: 12px; background: var(--sicoob-mint); color: white; font-weight: 700; }
+.market-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.small-btn { padding: 12px 16px; border-radius: 12px; background: var(--sicoob-mint); color: white; font-weight: 700; font-size: 15px; width: 100%; text-align: center; }
 .small-btn.alt { background: var(--sicoob-orange); }
 .small-btn.gray { background: #edf5f3; color: var(--sicoob-teal); border: 2px solid var(--line); }
 
-.challenge { margin-top: 0; }
+.challenge { order: 1; margin-top: 0; }
 .challenge.hidden { display: none; }
-.challenge-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
-.question { font-size: 19px; font-weight: 700; line-height: 1.45; margin: 15px 0; }
-.answer-area { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.answer-area input { width: 100%; font-size: 20px; font-weight: 700; padding: 10px 14px; border: 2px solid var(--line); border-radius: 12px; margin-bottom: 8px; }
-.feedback { min-height: 32px; margin-top: 10px; font-weight: 700; }
-.challenge-note { background: #effbf5; border-radius: 14px; padding: 10px; margin-top: 10px; font-size: 14px; border: 1px solid var(--line); display: none; } /* Oculta dica por padrão */
-.option-grid { display: grid; grid-template-columns: 1fr; gap: 10px; width: 100%; }
-.option { background: white; border: 2px solid var(--line); padding: 12px 16px; border-radius: 16px; font-weight: 700; text-align: left; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+.challenge-head { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.question { font-size: 16px; font-weight: 700; line-height: 1.4; margin: 12px 0; }
+.answer-area input { width: 100%; font-size: 18px; font-weight: 700; padding: 12px; border: 2px solid var(--line); border-radius: 12px; margin-bottom: 8px; }
+.feedback { min-height: 28px; margin-top: 8px; font-weight: 700; font-size: 14px; }
+.challenge-note { background: #effbf5; border-radius: 12px; padding: 10px; margin-top: 8px; font-size: 13px; border: 1px solid var(--line); display: none; }
+.option-grid { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.option { background: white; border: 2px solid var(--line); padding: 10px 12px; border-radius: 12px; font-weight: 700; text-align: left; font-size: 14px; width: 100%; }
 .option.correct { background: #e1f7ee; border-color: var(--sicoob-mint); }
 .option.wrong { background: #ffe9e7; border-color: var(--red); }
 
-/* CÉDULAS ILUSTRADAS */
-.notes-container { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
-.banknote {
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 800;
-  color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.4);
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-}
-.note-2 { background: linear-gradient(135deg, #1e5799, #2989d8); }
-.note-5 { background: linear-gradient(135deg, #9b51e0, #7b2cbf); }
-.note-10 { background: linear-gradient(135deg, #d32f2f, #e53935); }
-.note-20 { background: linear-gradient(135deg, #f57c00, #ff9800); }
-.note-50 { background: linear-gradient(135deg, #af8d54, #c9a66b); }
+/* CÉDULAS ILUSTRADAS RESPONSIVAS */
+.notes-container { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+.banknote { padding: 3px 6px; border-radius: 5px; font-size: 11px; font-weight: 800; color: #fff; }
+.note-2 { background: #2989d8; } .note-5 { background: #7b2cbf; } .note-10 { background: #e53935; } .note-20 { background: #ff9800; } .note-50 { background: #c9a66b; }
 
-/* --- TELA DE RESULTADO (APENAS ACERTOS E ERROS) --- */
+/* --- TELA DE RESULTADO --- */
 #result { align-items: center; }
-.result-card { text-align: center; padding: 30px; background: white; border-radius: 28px; border: 3px solid var(--line); max-width: 700px; margin: auto; }
-.result-icon { font-size: 70px; }
-.score { font-size: 52px; color: var(--sicoob-teal); font-weight: 700; }
-.stats { display: flex; justify-content: center; gap: 20px; margin: 22px 0; }
-.stat { background: #effbf5; border: 2px solid var(--line); border-radius: 16px; padding: 16px 32px; min-width: 140px; }
-.stat b { display: block; font-size: 28px; color: var(--sicoob-teal); }
-.result-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-.main-btn { background: var(--sicoob-mint); color: white; padding: 15px 28px; border-radius: 16px; font-weight: 700; font-size: 18px; box-shadow: 0 5px 0 #0d766d; }
-.main-btn.orange { background: var(--sicoob-orange); box-shadow: 0 5px 0 #c97519; }
+.result-card { text-align: center; padding: 20px 14px; background: white; border-radius: 24px; border: 3px solid var(--line); width: 100%; }
+.result-icon { font-size: 50px; }
+.score { font-size: 42px; color: var(--sicoob-teal); font-weight: 700; }
+.stats { display: flex; justify-content: center; gap: 12px; margin: 16px 0; }
+.stat { background: #effbf5; border: 2px solid var(--line); border-radius: 14px; padding: 10px 16px; flex: 1; }
+.stat b { display: block; font-size: 22px; color: var(--sicoob-teal); }
+.result-actions { display: flex; flex-direction: column; gap: 8px; width: 100%; }
 
 .hidden { display: none !important; }
 
-@media(max-width: 800px) {
-  .market { grid-template-columns: 1fr; }
-  .cart { position: static; }
-  .shelf { grid-template-columns: repeat(2,1fr); }
-  .topbar { grid-template-columns: 1fr 1fr; }
-  .brand { grid-column: 1/-1; }
-  .stats { flex-direction: row; gap: 10px; }
-  .stat { padding: 12px 20px; min-width: 110px; }
-}
-
-@media print {
-  body { background: white; }
-  .screen { display: none !important; }
-  .screen#result { display: flex !important; min-height: auto; padding: 0; }
-  .result-card { box-shadow: none; border: 0; }
-  .result-actions { display: none; }
+/* TELAS MAIORES (COMPUTADORES E TABLETS) */
+@media(min-width: 768px) {
+  .screen { padding: 20px; }
+  .market { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 16px; }
+  .shelf { grid-template-columns: repeat(3, 1fr); }
+  .cart { order: 0; position: sticky; top: 15px; }
+  .challenge { order: 0; }
+  .result-actions { flex-direction: row; justify-content: center; }
+  .small-btn { width: auto; }
 }
 </style>
 </head>
@@ -176,34 +158,24 @@ button { cursor: pointer; border: 0; }
       <div class="title-container">
         <div class="cart-icon-title">🛒</div>
         <h1 class="main-title">MERCADINHO DA MATEMÁTICA</h1>
-        <div class="ribbon-banner">
-          ✨ Uma aventura de compras, escolhas e desafios! ✨
-        </div>
+        <div class="ribbon-banner">✨ Uma aventura de compras e desafios! ✨</div>
       </div>
 
       <div class="class-info-box">
-        <div class="info-badge">
-          <span class="badge-icon">🎓</span>
-          <span class="badge-text">4º ANO E</span>
-        </div>
-        <div class="info-badge">
-          <span class="badge-icon">👩‍🏫</span>
-          <span class="badge-text">Profª Bruna Paula</span>
-        </div>
+        <div class="info-badge"><span class="badge-icon">🎓</span><span class="badge-text">4º ANO E</span></div>
+        <div class="info-badge"><span class="badge-icon">👩‍🏫</span><span class="badge-text">Profª Bruna Paula</span></div>
       </div>
 
       <div class="student-input-container">
         <label for="studentNameInput">👤 Digite seu nome para jogar:</label>
-        <input id="studentNameInput" type="text" maxlength="40" placeholder="Seu nome completo aqui..." />
+        <input id="studentNameInput" type="text" maxlength="40" placeholder="Seu nome aqui..." />
       </div>
 
-      <button class="play-btn-large" id="startBtn">
-        ▶ COMEÇAR A JOGAR
-      </button>
+      <button class="play-btn-large" id="startBtn">▶ COMEÇAR A JOGAR</button>
 
       <div class="footer-banner">
         <b>Financinhas nas Escolas • Instituto Sicoob</b><br>
-        <span>Educação Financeira Cooperativa e Matemática Divertida</span>
+        <span>Educação Financeira Cooperativa</span>
       </div>
     </div>
   </div>
@@ -213,18 +185,19 @@ button { cursor: pointer; border: 0; }
 <section id="game" class="screen">
 <div class="game-wrap">
   <div class="topbar">
-    <div class="brand">🛒 Mercadinho da Matemática</div>
+    <div class="brand">🛒 Mercadinho</div>
     <div class="pill" id="studentPill">👤 —</div>
-    <div><span class="pill money-pill" id="balancePill">💰 R$ 100,00</span> <button class="sound" id="soundBtnGame">🔊</button></div>
+    <div><span class="pill money-pill" id="balancePill">💰 R$ 100</span> <button class="sound" id="soundBtnGame">🔊</button></div>
   </div>
   <div class="progress"><div id="progressBar"></div></div>
+  
   <div class="market">
     
-    <!-- ESQUERDA: PRATELEIRA OU QUESTÕES DO CAIXA -->
+    <!-- ESQUERDA/TOPO: PRATELEIRA OU QUESTÕES DO CAIXA -->
     <div>
       <div class="panel" id="shelfPanel">
         <h2>🛍️ Escolha seus produtos</h2>
-        <p>Você recebeu <b>R$ 100,00</b>. Monte seu carrinho escolhendo os itens abaixo:</p>
+        <p style="font-size: 13px; margin-top: -4px;">Você recebeu <b>R$ 100,00</b>. Monte seu carrinho:</p>
         <div class="shelf" id="shelf"></div>
         <div class="market-actions">
           <button class="small-btn alt" id="finishShopping">🧾 Ir para os Desafios do Caixa</button>
@@ -233,7 +206,7 @@ button { cursor: pointer; border: 0; }
       </div>
 
       <div class="panel challenge hidden" id="challengePanel">
-        <div class="challenge-head"><h2 id="challengeTitle">Desafio</h2><span class="pill" id="qCounter">1/16</span></div>
+        <div class="challenge-head"><h2 id="challengeTitle" style="font-size: 16px; margin:0;">Desafio</h2><span class="pill" id="qCounter">1/16</span></div>
         <div class="question" id="question"></div>
         <div id="answerArea"></div>
         <div class="feedback" id="feedback"></div>
@@ -241,7 +214,7 @@ button { cursor: pointer; border: 0; }
       </div>
     </div>
 
-    <!-- DIREITA: LISTA DOS ITENS COM PREÇO UNITÁRIO -->
+    <!-- DIREITA/FUNDO NO MOBILE: LISTA DE ITENS DO CARRINHO -->
     <aside class="panel cart" id="cartPanel">
       <h2>🛒 Seu Carrinho</h2>
       <div class="cart-list" id="cartList"></div>
@@ -251,13 +224,13 @@ button { cursor: pointer; border: 0; }
 </div>
 </section>
 
-<!-- TELA DE RESULTADO (APENAS ACERTOS E ERROS) -->
+<!-- TELA DE RESULTADO -->
 <section id="result" class="screen">
 <div class="wrap">
   <div class="card result-card">
     <div class="result-icon">🏆</div>
-    <h1>MISSÃO CONCLUÍDA!</h1>
-    <p id="resultGreeting"></p>
+    <h1 style="font-size: 24px; margin: 6px 0;">MISSÃO CONCLUÍDA!</h1>
+    <p id="resultGreeting" style="font-size: 14px;"></p>
     <div class="score" id="scoreText">0%</div>
     
     <div class="stats">
@@ -265,12 +238,12 @@ button { cursor: pointer; border: 0; }
       <div class="stat"><b id="wrongStat">0</b>erros</div>
     </div>
     
-    <p id="resultMessage"></p>
+    <p id="resultMessage" style="font-weight: 700; font-size: 14px;"></p>
     <div class="result-actions">
-      <button class="main-btn orange" id="printBtn">🖨️ Imprimir resultado</button>
-      <button class="main-btn" id="whatsBtn">💬 Compartilhar no WhatsApp</button>
+      <button class="small-btn alt" id="printBtn">🖨️ Imprimir resultado</button>
+      <button class="small-btn" id="whatsBtn">💬 Compartilhar no WhatsApp</button>
     </div>
-    <div class="footer-banner" style="margin-top:25px"><b>Financinhas nas Escolas • Instituto Sicoob</b><br>Educação Financeira Cooperativa e Matemática Divertida</div>
+    <div class="footer-banner"><b>Financinhas nas Escolas • Instituto Sicoob</b></div>
   </div>
 </div>
 </section>
@@ -345,7 +318,7 @@ function startGame(){
   tone(550,.08);setTimeout(()=>tone(750,.1),80);
   resetGame();
   show("game");
-  $("studentPill").textContent = "👤 " + state.name + " • " + state.className;
+  $("studentPill").textContent = "👤 " + state.name;
 }
 
 $("startBtn").onclick = startGame;
@@ -366,10 +339,7 @@ function renderShelf(){
   }).join("");
 }
 
-function total(){
-  return PRODUCTS.reduce((s,p)=>s+p.price*(state.cart[p.id]||0),0);
-}
-
+function total(){ return PRODUCTS.reduce((s,p)=>s+p.price*(state.cart[p.id]||0),0); }
 function countItems(){ return Object.values(state.cart).reduce((a,b)=>a+b,0); }
 
 function changeQty(id,delta){
@@ -393,14 +363,13 @@ function renderCart(){
         <span class="unit-price-badge">R$ ${p.price},00</span>
       </div>
       <span>× ${state.cart[p.id]}</span>
-    </div>`).join(""):"<p style='text-align:center;color:#888;'>Nenhum item escolhido.</p>";
+    </div>`).join(""):"<p style='text-align:center;color:#888;font-size:13px;'>Nenhum item escolhido.</p>";
 }
 
 $("clearCart").onclick=()=>{state.cart={};renderShelf();renderCart();clickSound()};
 
 $("finishShopping").onclick=()=>{
   if(countItems()<1){alert("Escolha pelo menos um produto antes de ir para os desafios.");return}
-  
   $("shelfPanel").classList.add("hidden");
   buildQuestions();
   state.q=0;state.correct=0;state.wrong=0;
@@ -430,143 +399,22 @@ function buildQuestions(){
   const maxQtyItem = [...lines].sort((a,b)=>b.q - a.q)[0];
 
   state.questions = [
-    // --- 10 PERGUNTAS SOBRE A COMPRA DO ALUNO ---
-    {
-      title: "Desafio 1 • Somando o Carrinho",
-      text: `Olhando os preços unitários e as quantidades no seu carrinho, faça os cálculos: Qual foi o VALOR TOTAL da sua compra?`,
-      answer: t,
-      type: "number",
-      note: "Multiplique a quantidade pelo preço de cada item e some tudo."
-    },
-    {
-      title: "Desafio 2 • Hora do Troco",
-      text: `Você pagou sua compra total com a nota de R$ 100,00 que recebeu. Quanto você deve receber de TROCO?`,
-      answer: bal,
-      type: "number",
-      note: "Subtraia o total da sua compra de R$ 100,00."
-    },
-    {
-      title: "Desafio 3 • Calculando Quantidades",
-      text: `Você comprou ${maxQtyItem.q} unidade(s) de ${maxQtyItem.p.name} (R$ ${maxQtyItem.p.price},00 cada). Quanto gastou apenas com esse produto?`,
-      answer: maxQtyItem.v,
-      type: "number",
-      note: "Multiplique a quantidade pelo preço unitário."
-    },
-    {
-      title: "Desafio 4 • Item mais Caro",
-      text: `Dentre os produtos que VOCÊ escolheu no carrinho, qual tem o MAIOR preço unitário?`,
-      type: "choice",
-      options: [
-        { label: maxPriceItem.p.name, val: maxPriceItem.p.name },
-        { label: minPriceItem.p.name, val: minPriceItem.p.name },
-        { label: "Todos custam igual", val: "Todos custam igual" }
-      ],
-      answer: maxPriceItem.p.name,
-      note: "Observe o valor unitário ao lado de cada item escolhido."
-    },
-    {
-      title: "Desafio 5 • Comparando Preços",
-      text: `Qual é a diferença de preço unitário entre o item mais caro (${maxPriceItem.p.name} - R$ ${maxPriceItem.p.price}) e o mais barato (${minPriceItem.p.name} - R$ ${minPriceItem.p.price}) do seu carrinho?`,
-      answer: maxPriceItem.p.price - minPriceItem.p.price,
-      type: "number",
-      note: "Subtraia o preço do mais barato do preço do mais caro."
-    },
-    {
-      title: "Desafio 6 • Estimando o Dobro",
-      text: `Se você decidisse levar o DOBRO da quantidade de ${maxQtyItem.p.name} que colocou no carrinho, quanto gastaria com esse item?`,
-      answer: maxQtyItem.v * 2,
-      type: "number",
-      note: "Calcule duas vezes o gasto desse produto."
-    },
-    {
-      title: "Desafio 7 • Pagamento Alternativo",
-      text: `Se em vez de R$ 100,00 você pagasse sua compra usando 2 notas de R$ 50,00, qual seria seu troco?`,
-      answer: bal,
-      type: "number",
-      note: "Lembre-se: 2 notas de R$ 50,00 somam R$ 100,00."
-    },
-    {
-      title: "Desafio 8 • Aproveitando o Saldo",
-      text: `Com o troco que sobrou da sua compra, quantas unidades de ${minPriceItem.p.name} (R$ ${minPriceItem.p.price},00) você ainda conseguiria comprar?`,
-      answer: Math.floor(bal / minPriceItem.p.price),
-      type: "number",
-      note: "Divida o troco pelo preço do produto e considere apenas unidades inteiras."
-    },
-    {
-      title: "Desafio 9 • Dividindo a Conta",
-      text: `Se você e um amigo fossem pagar essa sua compra juntos, dividindo o valor exatamente pela metade, quanto cada um pagaria?`,
-      answer: t / 2,
-      type: "number",
-      note: "Divida o total da compra por 2."
-    },
-    {
-      title: "Desafio 10 • Arredondamento",
-      text: `Qual é a dezena exata mais próxima do valor total da sua compra?`,
-      answer: Math.round(t / 10) * 10,
-      type: "number",
-      note: "Exemplo: R$ 27 arredonda para R$ 30; R$ 23 arredonda para R$ 20."
-    },
-
-    // --- 2 QUESTÕES COM CÉDULAS ILUSTRADAS DO REAL ---
-    {
-      title: "Desafio 11 • Cédulas do Real 💵",
-      text: `Mariana fez uma compra no valor de R$ 37,00. Qual combinação de notas do Real paga essa compra com o valor EXATO, sem precisar de troco?`,
-      type: "choice",
-      options: [
-        { label: `Option 1`, html: `<span>1x R$20, 1x R$10, 1x R$5, 1x R$2</span>` + makeNotes([20, 10, 5, 2]), val: "opt1" },
-        { label: `Option 2`, html: `<span>1x R$50, 1x R$10</span>` + makeNotes([50, 10]), val: "opt2" },
-        { label: `Option 3`, html: `<span>3x R$10, 1x R$5</span>` + makeNotes([10, 10, 10, 5]), val: "opt3" }
-      ],
-      answer: "opt1",
-      note: "Some as cédulas: 20 + 10 + 5 + 2 = R$ 37,00."
-    },
-    {
-      title: "Desafio 12 • Reconhecendo o Troco 💵",
-      text: `João comprou um pacote de Arroz por R$ 18,00 e um Suco por R$ 7,00 (Total = R$ 25,00). Ele pagou com 1 nota de R$ 50,00. Quais notas ele recebeu de troco?`,
-      type: "choice",
-      options: [
-        { label: `Option 1`, html: `<span>1x R$20 + 1x R$5</span>` + makeNotes([20, 5]), val: "opt1" },
-        { label: `Option 2`, html: `<span>1x R$50</span>` + makeNotes([50]), val: "opt2" },
-        { label: `Option 3`, html: `<span>1x R$10 + 1x R$2</span>` + makeNotes([10, 2]), val: "opt3" }
-      ],
-      answer: "opt1",
-      note: "Troco = R$ 50 - R$ 25 = R$ 25,00 (1 nota de R$ 20 + 1 nota de R$ 5)."
-    },
-
-    // --- 4 PROBLEMAS SITUACIONAIS ---
-    {
-      title: "Desafio 13 • Oferta do Dia (Desconto)",
-      text: `O pacote de Arroz custa R$ 18,00, mas está em promoção com R$ 3,00 de desconto. Quanto custam 2 pacotes de arroz na promoção?`,
-      answer: (18 - 3) * 2,
-      type: "number",
-      note: "Subtraia o desconto (18 - 3 = 15) e multiplique por 2."
-    },
-    {
-      title: "Desafio 14 • Compras da Escola (Multiplicação)",
-      text: `A professora Bruna comprou 5 caixas de Leite (R$ 6,00 cada) e 3 pacotes de Pão (R$ 8,00 cada) para o lanche. Quanto ela gastou ao todo?`,
-      answer: (5 * 6) + (3 * 8),
-      type: "number",
-      note: "Calcule (5 × 6) + (3 × 8)."
-    },
-    {
-      title: "Desafio 15 • Combinação Perfeita",
-      text: `Luísa tem R$ 20,00. Ela comprou 1 Queijo (R$ 15,00). Com o troco que sobrou, qual produto ela pode comprar sem ter que colocar mais dinheiro?`,
-      type: "choice",
-      options: [
-        { label: "Maçã (R$ 5,00)", val: "Maçã (R$ 5,00)" },
-        { label: "Leite (R$ 6,00)", val: "Leite (R$ 6,00)" },
-        { label: "Pão (R$ 8,00)", val: "Pão (R$ 8,00)" }
-      ],
-      answer: "Maçã (R$ 5,00)",
-      note: "Troco = 20 - 15 = R$ 5,00."
-    },
-    {
-      title: "Desafio 16 • Meta de Economia",
-      text: `Se você quer guardar exatamente R$ 40,00 da sua nota de R$ 100,00 na poupança, qual é o valor MÁXIMO que você pode gastar no supermercado?`,
-      answer: 60,
-      type: "number",
-      note: "100 - 40 = limite de compras."
-    }
+    { title: "Desafio 1 • Somando o Carrinho", text: `Olhando os preços unitários e as quantidades no seu carrinho, qual foi o VALOR TOTAL da sua compra?`, answer: t, type: "number", note: "Multiplique a quantidade pelo preço de cada item e some tudo." },
+    { title: "Desafio 2 • Hora do Troco", text: `Você pagou sua compra total com a nota de R$ 100,00. Quanto deve receber de TROCO?`, answer: bal, type: "number", note: "Subtraia o total da sua compra de R$ 100,00." },
+    { title: "Desafio 3 • Calculando Quantidades", text: `Você comprou ${maxQtyItem.q} unidade(s) de ${maxQtyItem.p.name} (R$ ${maxQtyItem.p.price},00 cada). Quanto gastou apenas com esse produto?`, answer: maxQtyItem.v, type: "number", note: "Multiplique a quantidade pelo preço unitário." },
+    { title: "Desafio 4 • Item mais Caro", text: `Dentre os produtos do seu carrinho, qual tem o MAIOR preço unitário?`, type: "choice", options: [ { label: maxPriceItem.p.name, val: maxPriceItem.p.name }, { label: minPriceItem.p.name, val: minPriceItem.p.name }, { label: "Todos custam igual", val: "Todos custam igual" } ], answer: maxPriceItem.p.name, note: "Observe o valor unitário ao lado de cada item." },
+    { title: "Desafio 5 • Comparando Preços", text: `Qual a diferença de preço unitário entre o item mais caro (${maxPriceItem.p.name} - R$ ${maxPriceItem.p.price}) e o mais barato (${minPriceItem.p.name} - R$ ${minPriceItem.p.price}) do seu carrinho?`, answer: maxPriceItem.p.price - minPriceItem.p.price, type: "number", note: "Subtraia o preço do mais barato do preço do mais caro." },
+    { title: "Desafio 6 • Estimando o Dobro", text: `Se levasse o DOBRO da quantidade de ${maxQtyItem.p.name} que colocou no carrinho, quanto gastaria com esse item?`, answer: maxQtyItem.v * 2, type: "number", note: "Calcule duas vezes o gasto desse produto." },
+    { title: "Desafio 7 • Pagamento Alternativo", text: `Se pagasse sua compra usando 2 notas de R$ 50,00, qual seria seu troco?`, answer: bal, type: "number", note: "Lembre-se: 2 notas de R$ 50,00 somam R$ 100,00." },
+    { title: "Desafio 8 • Aproveitando o Saldo", text: `Com o troco que sobrou, quantas unidades de ${minPriceItem.p.name} (R$ ${minPriceItem.p.price},00) você ainda conseguiria comprar?`, answer: Math.floor(bal / minPriceItem.p.price), type: "number", note: "Divida o troco pelo preço e considere apenas números inteiros." },
+    { title: "Desafio 9 • Dividindo a Conta", text: `Se você e um amigo fossem pagar essa compra juntos, dividindo o valor exatamente pela metade, quanto cada um pagaria?`, answer: t / 2, type: "number", note: "Divida o total da compra por 2." },
+    { title: "Desafio 10 • Arredondamento", text: `Qual é a dezena exata mais próxima do valor total da sua compra?`, answer: Math.round(t / 10) * 10, type: "number", note: "Exemplo: R$ 27 arredonda para R$ 30; R$ 23 para R$ 20." },
+    { title: "Desafio 11 • Cédulas do Real 💵", text: `Mariana fez uma compra de R$ 37,00. Qual combinação de notas paga essa compra com valor EXATO?`, type: "choice", options: [ { label: `Option 1`, html: `<span>1x R$20, 1x R$10, 1x R$5, 1x R$2</span>` + makeNotes([20, 10, 5, 2]), val: "opt1" }, { label: `Option 2`, html: `<span>1x R$50, 1x R$10</span>` + makeNotes([50, 10]), val: "opt2" }, { label: `Option 3`, html: `<span>3x R$10, 1x R$5</span>` + makeNotes([10, 10, 10, 5]), val: "opt3" } ], answer: "opt1", note: "Some as cédulas: 20 + 10 + 5 + 2 = R$ 37,00." },
+    { title: "Desafio 12 • Reconhecendo o Troco 💵", text: `João comprou Arroz (R$18) e Suco (R$7) = R$25. Pagou com R$ 50. Quais notas recebeu de troco?`, type: "choice", options: [ { label: `Option 1`, html: `<span>1x R$20 + 1x R$5</span>` + makeNotes([20, 5]), val: "opt1" }, { label: `Option 2`, html: `<span>1x R$50</span>` + makeNotes([50]), val: "opt2" }, { label: `Option 3`, html: `<span>1x R$10 + 1x R$2</span>` + makeNotes([10, 2]), val: "opt3" } ], answer: "opt1", note: "Troco = R$ 50 - R$ 25 = R$ 25,00 (1 nota de R$ 20 + 1 de R$ 5)." },
+    { title: "Desafio 13 • Oferta do Dia", text: `O Arroz custa R$ 18,00, mas está com R$ 3,00 de desconto. Quanto custam 2 pacotes na promoção?`, answer: (18 - 3) * 2, type: "number", note: "Subtraia o desconto (18 - 3 = 15) e multiplique por 2." },
+    { title: "Desafio 14 • Compras da Escola", text: `Profª Bruna comprou 5 caixas de Leite (R$ 6 cada) e 3 pacotes de Pão (R$ 8 cada). Quanto ela gastou ao todo?`, answer: (5 * 6) + (3 * 8), type: "number", note: "Calcule (5 × 6) + (3 × 8)." },
+    { title: "Desafio 15 • Combinação Perfeita", text: `Luísa tem R$ 20,00. Comprou 1 Queijo (R$ 15,00). Com o troco que sobrou, qual produto ela pode comprar?`, type: "choice", options: [ { label: "Maçã (R$ 5,00)", val: "Maçã (R$ 5,00)" }, { label: "Leite (R$ 6,00)", val: "Leite (R$ 6,00)" }, { label: "Pão (R$ 8,00)", val: "Pão (R$ 8,00)" } ], answer: "Maçã (R$ 5,00)", note: "Troco = 20 - 15 = R$ 5,00." },
+    { title: "Desafio 16 • Meta de Economia", text: `Se quer guardar R$ 40,00 da sua nota de R$ 100,00 na poupança, qual é o valor MÁXIMO que pode gastar?`, answer: 60, type: "number", note: "100 - 40 = limite de compras." }
   ];
 }
 
@@ -586,7 +434,7 @@ function renderQuestion(){
   $("question").textContent=q.text;
   $("feedback").textContent="";
   $("feedback").className="feedback";
-  $("challengeNote").style.display = "none"; // Garante que a dica fique oculta
+  $("challengeNote").style.display = "none";
   $("challengeNote").textContent=q.note;
   $("progressBar").style.width=((state.q)/16*100)+"%";
   
@@ -602,7 +450,7 @@ function renderQuestion(){
     $("answerArea").innerHTML=`
       <div class="answer-area">
         <input id="answerInput" type="number" step="0.01" inputmode="decimal" placeholder="Digite sua resposta">
-        <button class="small-btn alt" style="width:100%" onclick="checkNumber()">CONFIRMAR ✓</button>
+        <button class="small-btn alt" onclick="checkNumber()">CONFIRMAR ✓</button>
       </div>`;
     setTimeout(()=>{$("answerInput").focus()},50);
   }
@@ -624,10 +472,8 @@ function revealFeedback(correct){
     errorSound();
   }
   
-  // MOSTRA A DICA APENAS DEPOIS DE RESPONDER
   $("challengeNote").style.display = "block";
   document.querySelectorAll(".option").forEach(b=>b.disabled=true);
-  
   setTimeout(()=>{state.q++;renderQuestion();},1500);
 }
 
