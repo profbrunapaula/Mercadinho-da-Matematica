@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Mercadinho da Matemática — Financinhas nas Escolas</title>
+<!-- Biblioteca para gerar imagem do cartão de resultado -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
 
@@ -67,7 +69,7 @@ button { cursor: pointer; border: 0; }
 .play-btn-large { background: var(--sicoob-orange); color: #ffffff; font-size: 20px; font-weight: 700; padding: 14px 32px; border: none; border-radius: 40px; box-shadow: 0 5px 0 #cc6e00; width: 100%; max-width: 320px; }
 .footer-banner { margin-top: 20px; border-top: 2px dashed var(--line); padding-top: 12px; color: var(--sicoob-teal); font-size: 12px; font-weight: 600; }
 
-/* --- TELA DO JOGO (LAYOUT MOBILE REESTRUTURADO) --- */
+/* --- TELA DO JOGO --- */
 #game { align-items: stretch; }
 .game-wrap { width: 100%; margin: auto; }
 .topbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
@@ -78,7 +80,6 @@ button { cursor: pointer; border: 0; }
 .progress { height: 10px; background: #d4eee6; border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
 .progress > div { height: 100%; background: var(--sicoob-mint); width: 5%; transition: .35s; }
 
-/* ESTRUTURA FLEXÍVEL: DESAFIOS EM CIMA, CARRINHO LOGO ABAIXO */
 .market { display: flex; flex-direction: column; gap: 12px; }
 
 .panel { background: rgba(255,255,255,.98); border: 2.5px solid var(--line); border-radius: 20px; padding: 14px; box-shadow: var(--shadow); }
@@ -92,7 +93,6 @@ button { cursor: pointer; border: 0; }
 .qty-row button { width: 36px; height: 36px; border-radius: 10px; background: #dff4eb; color: var(--sicoob-mint); font-weight: 700; font-size: 20px; }
 .qty { min-width: 20px; font-weight: 700; font-size: 16px; }
 
-/* CARRINHO COMPACTO PARA O CELULAR */
 .cart { order: 2; }
 .cart h2 { margin: 0 0 8px 0; font-size: 16px; display: flex; justify-content: space-between; align-items: center; }
 .cart-list { max-height: 180px; overflow-y: auto; }
@@ -116,7 +116,7 @@ button { cursor: pointer; border: 0; }
 .option.correct { background: #e1f7ee; border-color: var(--sicoob-mint); }
 .option.wrong { background: #ffe9e7; border-color: var(--red); }
 
-/* CÉDULAS ILUSTRADAS RESPONSIVAS */
+/* CÉDULAS ILUSTRADAS */
 .notes-container { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
 .banknote { padding: 3px 6px; border-radius: 5px; font-size: 11px; font-weight: 800; color: #fff; }
 .note-2 { background: #2989d8; } .note-5 { background: #7b2cbf; } .note-10 { background: #e53935; } .note-20 { background: #ff9800; } .note-50 { background: #c9a66b; }
@@ -133,7 +133,6 @@ button { cursor: pointer; border: 0; }
 
 .hidden { display: none !important; }
 
-/* TELAS MAIORES (COMPUTADORES E TABLETS) */
 @media(min-width: 768px) {
   .screen { padding: 20px; }
   .market { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 16px; }
@@ -192,8 +191,6 @@ button { cursor: pointer; border: 0; }
   <div class="progress"><div id="progressBar"></div></div>
   
   <div class="market">
-    
-    <!-- ESQUERDA/TOPO: PRATELEIRA OU QUESTÕES DO CAIXA -->
     <div>
       <div class="panel" id="shelfPanel">
         <h2>🛍️ Escolha seus produtos</h2>
@@ -214,7 +211,6 @@ button { cursor: pointer; border: 0; }
       </div>
     </div>
 
-    <!-- DIREITA/FUNDO NO MOBILE: LISTA DE ITENS DO CARRINHO -->
     <aside class="panel cart" id="cartPanel">
       <h2>🛒 Seu Carrinho</h2>
       <div class="cart-list" id="cartList"></div>
@@ -512,11 +508,46 @@ function finishGame(){
 
 $("printBtn").onclick=()=>window.print();
 
-function resultText(){
-  return `🛒 Mercadinho da Matemática\n👤 Aluno(a): ${state.name} • ${state.className}\n🎯 Resultado: ${state.correct}/16 acertos (${Math.round(state.correct/16*100)}%)\nFinancinhas nas Escolas • Instituto Sicoob`;
-}
+// FUNÇÃO PARA GERAR A IMAGEM PNG E COMPARTILHAR
+$("whatsBtn").onclick = async () => {
+  const resultCard = document.querySelector(".result-card");
+  const actions = document.querySelector(".result-actions");
+  
+  // Oculta os botões temporariamente para não saírem na foto
+  actions.style.display = "none";
 
-$("whatsBtn").onclick=()=>window.open("https://wa.me/?text="+encodeURIComponent(resultText()),"_blank");
+  try {
+    const canvas = await html2canvas(resultCard, { scale: 2, backgroundColor: "#ffffff" });
+    actions.style.display = "flex";
+
+    canvas.toBlob(async (blob) => {
+      const fileName = `resultado-${state.name.toLowerCase().replace(/\s+/g, '-')}.png`;
+      const file = new File([blob], fileName, { type: "image/png" });
+      
+      // Tenta o envio direto de imagem no celular (WhatsApp)
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            files: [file],
+            title: "Resultado — Mercadinho da Matemática",
+            text: `Confira meu resultado no jogo Mercadinho da Matemática! 🎓 ${state.name} - ${state.className}`
+          });
+        } catch (err) {
+          console.log("Compartilhamento cancelado pelo usuário.");
+        }
+      } else {
+        // Se estiver no computador ou o navegador não apoiar compartilhamento direto de ficheiro, baixa a imagem
+        const link = document.createElement("a");
+        link.download = fileName;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      }
+    }, "image/png");
+  } catch (e) {
+    actions.style.display = "flex";
+    alert("Não foi possível gerar a imagem. Você pode tirar um print da tela para compartilhar!");
+  }
+};
 
 renderShelf();renderCart();
 </script>
